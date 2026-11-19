@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>WanderWorld - Travel & Tourism</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f5f8fa;
+            color: #263238;
+        }
+
+        /* Navigation Bar */
+
+        header {
+            background: #073b4c;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #ffd166;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #ffd166;
+        }
+
+        /* Hero Section */
+
+        .hero {
+            min-height: 480px;
+            background:
+            linear-gradient(rgba(0,0,0,0.4),
+            rgba(0,0,0,0.5)),
+            url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b")
+            center/cover;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 30px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            margin-bottom: 25px;
+        }
+
+        .hero button {
+            background: #ffd166;
+            color: #073b4c;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .hero button:hover {
+            background: white;
+        }
+
+        /* Section */
+
+        .section {
+            padding: 55px 7%;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 32px;
+            color: #073b4c;
+            margin-bottom: 12px;
+        }
+
+        .section > p {
+            margin-bottom: 25px;
+            color: #607d8b;
+        }
+
+        /* Search and Filter */
+
+        .search-box {
+            margin: 25px auto;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-box input,
+        .search-box select {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            min-width: 220px;
+        }
+
+        /* Destination Cards */
+
+        .destination-container {
+            display: grid;
+            grid-template-columns:
+            repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            text-align: left;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 18px;
+        }
+
+        .card h3 {
+            color: #073b4c;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            margin: 8px 0;
+            color: #607d8b;
+            font-size: 14px;
+        }
+
+        .price {
+            color: #e76f51;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 12px 0;
+        }
+
+        .card button {
+            background: #073b4c;
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .card button:hover {
+            background: #118ab2;
+        }
+
+        /* About Section */
+
+        .about {
+            background: #e0f2f1;
+            padding: 55px 10%;
+            text-align: center;
+        }
+
+        .about h2 {
+            color: #073b4c;
+            margin-bottom: 18px;
+        }
+
+        .about p {
+            line-height: 1.8;
+        }
+
+        /* Booking Section */
+
+        .booking {
+            padding: 55px 20px;
+            text-align: center;
+        }
+
+        .booking form {
+            max-width: 450px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .booking input,
+        .booking select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+        }
+
+        .booking button {
+            width: 100%;
+            background: #073b4c;
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        /* Footer */
+
+        footer {
+            background: #073b4c;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* Responsive Design */
+
+        @media(max-width: 650px) {
+
+            header {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            nav {
+                text-align: center;
+                line-height: 2.2;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <header>
+
+        <div class="logo">🌍 WanderWorld</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#destinations">Destinations</a>
+            <a href="#about">About</a>
+            <a href="#booking">Booking</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Home Section -->
+
+    <section class="hero" id="home">
+
+        <div>
+            <h1>Explore The World</h1>
+
+            <p>
+                Discover beautiful destinations
+                and create unforgettable memories.
+            </p>
+
+            <button onclick="goToDestinations()">
+                Explore Destinations
+            </button>
+        </div>
+
+    </section>
+
+
+    <!-- Destinations -->
+
+    <section class="section" id="destinations">
+
+        <h2>Popular Destinations</h2>
+
+        <p>Choose your favourite destination
+           and start your journey!</p>
+
+        <div class="search-box">
+
+            <input type="text"
+                   id="searchInput"
+                   placeholder="Search destinations..."
+                   oninput="filterPlaces()">
+
+            <select id="category"
+                    onchange="filterPlaces()">
+
+                <option value="all">All Categories</option>
+                <option value="Beach">Beach</option>
+                <option value="Mountain">Mountain</option>
+                <option value="City">City</option>
+                <option value="Nature">Nature</option>
+
+            </select>
+
+        </div>
+
+        <div class="destination-container"
+             id="destinationList">
+
+        </div>
+
+        <p id="noResults" hidden>
+            No destinations found. Try another search.
+        </p>
+
+    </section>
+
+
+    <!-- About -->
+
+    <section class="about" id="about">
+
+        <h2>About WanderWorld</h2>
+
+        <p>
+            WanderWorld is a travel and tourism website
+            designed to help travellers discover amazing
+            places around the world. We provide destination
+            information, estimated travel packages and
+            an easy booking experience.
+
+            Our goal is to make every journey memorable,
+            comfortable and enjoyable.
+        </p>
+
+    </section>
+
+
+    <!-- Booking -->
+
+    <section class="booking" id="booking">
+
+        <h2>Book Your Trip</h2>
+
+        <p>Fill in the details to plan your journey.</p>
+
+        <form id="bookingForm">
+
+            <input type="text"
+                   id="name"
+                   placeholder="Your Name"
+                   required>
+
+            <input type="email"
+                   id="email"
+                   placeholder="Your Email"
+                   required>
+
+            <select id="place" required>
+                <option value="">Select Destination</option>
+            </select>
+
+            <input type="number"
+                   id="people"
+                   placeholder="Number of Travellers"
+                   min="1"
+                   max="20"
+                   required>
+
+            <input type="date"
+                   id="travelDate"
+                   required>
+
+            <button type="submit">
+                Submit Booking
+            </button>
+
+        </form>
+
+        <p id="message"></p>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer id="contact">
+
+        <h3>🌍 WanderWorld</h3>
+
+        <p>Explore More. Travel More. Live More.</p>
+
+        <p>Email: wanderworld@example.com</p>
+
+        <p>© 2026 WanderWorld. All Rights Reserved.</p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        // Destination Information
+
+        const destinations = [
+
+            {
+                name: "Goa",
+                category: "Beach",
+                price: 6500,
+                days: "3 Days / 2 Nights",
+                image:
+                "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2",
+                description: "Beautiful beaches and exciting water activities."
+            },
+
+            {
+                name: "Manali",
+                category: "Mountain",
+                price: 9500,
+                days: "5 Days / 4 Nights",
+                image:
+                "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23",
+                description: "Snow-covered mountains and beautiful valleys."
+            },
+
+            {
+                name: "Jaipur",
+                category: "City",
+                price: 5500,
+                days: "3 Days / 2 Nights",
+                image:
+                "https://images.unsplash.com/photo-1599661046827-dacff0c0f09a",
+                description: "Explore forts, palaces and rich heritage."
+            },
+
+            {
+                name: "Kerala",
+                category: "Nature",
+                price: 8500,
+                days: "4 Days / 3 Nights",
+                image:
+                "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944",
+                description: "Enjoy greenery, backwaters and nature."
+            },
+
+            {
+                name: "Mysore",
+                category: "City",
+                price: 4000,
+                days: "2 Days / 1 Night",
+                image:
+                "https://images.unsplash.com/photo-1600112356915-089abb8fc71a",
+                description: "Discover beautiful palaces and culture."
+            },
+
+            {
+                name: "Ladakh",
+                category: "Mountain",
+                price: 15000,
+                days: "6 Days / 5 Nights",
+                image:
+                "https://images.unsplash.com/photo-1566837497312-7be7830ae9b1",
+                description: "Experience breathtaking mountain landscapes."
+            }
+
+        ];
+
+
+        // Display Destinations
+
+        function displayPlaces(places) {
+
+            const container =
+                document.getElementById("destinationList");
+
+            container.innerHTML = "";
+
+            document.getElementById("noResults").hidden =
+                places.length !== 0;
+
+            places.forEach(place => {
+
+                const card = document.createElement("div");
+
+                card.className = "card";
+
+                const image = document.createElement("img");
+                image.src = place.image;
+                image.alt = place.name;
+                image.loading = "lazy";
+
+                image.onerror = function() {
+                    this.style.display = "none";
+                };
+
+                const content = document.createElement("div");
+                content.className = "card-content";
+
+                const heading = document.createElement("h3");
+                heading.textContent = "📍 " + place.name;
+
+                const description = document.createElement("p");
+                description.textContent = place.description;
+
+                const duration = document.createElement("p");
+                duration.textContent = "🕒 " + place.days;
+
+                const category = document.createElement("p");
+                category.textContent = "Category: " + place.category;
+
+                const price = document.createElement("div");
+                price.className = "price";
+                price.textContent =
+                    "₹" + place.price.toLocaleString("en-IN")
+                    + " / person";
+
+                const button = document.createElement("button");
+                button.textContent = "Book Now";
+
+                button.addEventListener("click", function() {
+                    document.getElementById("place").value =
+                        place.name;
+
+                    document.getElementById("booking")
+                        .scrollIntoView({behavior: "smooth"});
+                });
+
+                content.append(
+                    heading,
+                    description,
+                    duration,
+                    category,
+                    price,
+                    button
+                );
+
+                card.append(image, content);
+
+                container.appendChild(card);
+
+            });
+
+        }
+
+
+        // Search and Category Filter
+
+        function filterPlaces() {
+
+            const search =
+                document.getElementById("searchInput")
+                .value.toLowerCase();
+
+            const category =
+                document.getElementById("category").value;
+
+            const filtered = destinations.filter(place => {
+
+                const matchesName =
+                    place.name.toLowerCase().includes(search);
+
+                const matchesCategory =
+                    category === "all" ||
+                    place.category === category;
+
+                return matchesName && matchesCategory;
+
+            });
+
+            displayPlaces(filtered);
+
+        }
+
+
+        // Fill Booking Dropdown
+
+        const placeDropdown =
+            document.getElementById("place");
+
+        destinations.forEach(place => {
+
+            const option = document.createElement("option");
+
+            option.value = place.name;
+            option.textContent = place.name;
+
+            placeDropdown.appendChild(option);
+
+        });
+
+
+        // Navigate to Destinations
+
+        function goToDestinations() {
+
+            document.getElementById("destinations")
+            .scrollIntoView({behavior: "smooth"});
+
+        }
+
+
+        // Booking Form Validation
+
+        document.getElementById("bookingForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById("name").value.trim();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const place =
+                document.getElementById("place").value;
+
+            const people =
+                Number(document.getElementById("people").value);
+
+            const date =
+                document.getElementById("travelDate").value;
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (!name || !email || !place || !date ||
+                !Number.isInteger(people) ||
+                people < 1 || people > 20) {
+
+                alert("Please enter valid booking details!");
+                return;
+
+            }
+
+            if (new Date(date + "T00:00:00") < today) {
+
+                alert("Please select a future travel date!");
+                return;
+
+            }
+
+            const selectedPlace =
+                destinations.find(item => item.name === place);
+
+            const total =
+                selectedPlace.price * people;
+
+            document.getElementById("message").innerHTML =
+                "🎉 Thank you, " + name +
+                "! Your booking request for " + place +
+                " has been received. Estimated package total: ₹" +
+                total.toLocaleString("en-IN") +
+                ". This is a demo request, not a confirmed reservation.";
+
+            this.reset();
+
+        });
+
+
+        // Show All Destinations Initially
+
+        displayPlaces(destinations);
+
+    </script>
+
+</body>
+</html>
